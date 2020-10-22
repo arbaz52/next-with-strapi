@@ -1,30 +1,17 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
+# [Next](https://nextjs.org/) with [Stripe](https://stripe.com/)
+**VERSION: 1.0**
+[Next.js](https://nextjs.org/) app to let users pay using [Stripe](https://stripe.com/) and download my CV/Resume.
 ```bash
-npm run dev
-# or
-yarn dev
+npm install
+npm run start
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## TODO
+Will build this project in multiple milestones.
+- **Version 1.0:** First one is creating a home page where users can purchase my CV/Resume for a price using stripe.
+- **Version 2.0:** Next step is to implement [https://fakestoreapi.com/](https://fakestoreapi.com/) and convert this to a e-commerce store with carting system just [arbaz52/next-redux-local-storage](https://github.com/arbaz52/next-redux-local-storage).
+---
+Useful links:
+[https://stripe.com/docs/api](https://stripe.com/docs/api)
+[https://fakestoreapi.com/](https://fakestoreapi.com/)
+[https://reactstrap.github.io/](https://reactstrap.github.io/)
+[https://undraw.co/](https://undraw.co/)
