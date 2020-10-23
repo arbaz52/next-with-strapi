@@ -1,7 +1,7 @@
 import axios from 'axios'
 export default (req, res) => {
     const { id } = req.query
-    axios.get("http://localhost:3000/api/products/")
+    axios.get("https://rstorer.herokuapp.com/api/products/")
         .then(_res => {
             try {
                 res.json(_res.data.filter(product => product.id == id)[0])
