@@ -1,11 +1,27 @@
-import React from 'react'
+import gsap from 'gsap/dist/gsap'
+import {ScrollTrigger} from 'gsap/dist/ScrollTrigger'
+import React, { useEffect, useRef } from 'react'
 import { Badge, Card, CardBody, CardImg, CardLink, CardText, CardTitle } from 'reactstrap'
 import { goto } from '../navigation'
 
 
 const ProductCard = (props) => {
+
+    gsap.registerPlugin(ScrollTrigger)
+
+    const selfRef = useRef(null)
+    useEffect(() => {
+        if(selfRef.current){
+            gsap.from(selfRef.current, 1, {
+                opacity: 0,
+                y: +100,
+                scrollTrigger: selfRef.current,
+            })
+        }
+    }, [selfRef.current])
+
     return (
-        <div className="col-sm-12 col-md-4 col-lg-4 p-5 text-center">
+        <div ref={selfRef} className="col-sm-12 col-md-4 col-lg-4 p-5 text-center">
             <img
                 className="mb-2"
                 src={props.image}
@@ -19,7 +35,7 @@ const ProductCard = (props) => {
             <CardText>
                 <small>{props.description.substr(0, 35) + '...'}</small>
             </CardText>
-            <a className="stretched-link" href="#" onClick={e=>{e.preventDefault(); goto(`products/${props.id}`)}}></a>
+            <a className="stretched-link" href="#" onClick={e => { e.preventDefault(); goto(`products/${props.id}`) }}></a>
         </div>
         /*
         <Card className="col-sm-12 col-md-4 col-lg-4">

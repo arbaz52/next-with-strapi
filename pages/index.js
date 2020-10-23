@@ -9,8 +9,8 @@ import { useEffect, useState } from 'react'
 import ProductCard from '../components/ProductCard/ProductCard'
 import InputRange from 'react-input-range'
 
-export default function Home() {
 
+export default function Home() {
   //products
   const products = useSelector(store => store.products)
   const dispatch = useDispatch()
@@ -71,7 +71,7 @@ export default function Home() {
               <img src="undraw_successful_purchase_uyin.svg" alt="" className="img-fluid" />
             </div>
             <div className="col-sm-12 col-md-6 py-5">
-              <h1>estori.</h1>
+                <h1>estori.</h1>
               <h5>Next.js store with redux and stripe</h5>
               <p className="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, voluptates?</p>
               <Button color="primary">Let's start buying!</Button>
@@ -162,7 +162,7 @@ export default function Home() {
                           })
                           .sort((a, b) => {
                             let x = 0
-                            switch(sorting.method){
+                            switch (sorting.method) {
                               case "id":
                                 x = a.id - b.id
                                 break
@@ -175,11 +175,11 @@ export default function Home() {
                               case "category":
                                 x = a.category.localeCompare(b.category)
                                 break
-                              
+
                               default:
                                 return -1
                             }
-                            if(sorting.asc)
+                            if (sorting.asc)
                               return x
                             return -x
                           })

@@ -24,11 +24,11 @@ const _getProduct = (id) => {
         dispatch(loadProduct())
         axios.get(`https://fakestoreapi.com/products/${id}`)
         .then(res => {
-            console.log(res)
+            // console.log(res)
             dispatch(loadProductSuccessful(res.data))
         })
         .catch(err => {
-            console.log(err)
+            // console.log(err)
             dispatch(loadProductFailed(err))
         })
     }

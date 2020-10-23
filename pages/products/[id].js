@@ -1,8 +1,10 @@
 import { useRouter } from 'next/dist/client/router'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Badge, Breadcrumb, BreadcrumbItem, Button, Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap'
 import { _getProduct } from '../../redux/product/actions'
+
+import { motion } from 'framer-motion'
 
 const SingleProductPage = () => {
     const router = useRouter()
@@ -21,6 +23,7 @@ const SingleProductPage = () => {
 
 
     const [quantityToBeAddedToCart, setQuantityToBeAddedToCart] = useState(1)
+
 
 
     return (
@@ -46,7 +49,20 @@ const SingleProductPage = () => {
                         </Breadcrumb>
 
                         <b className="text-primary text-capitalize">{productStore.product.category}</b>
-                        <h3>{productStore.product.title}</h3>
+                        <motion.div
+                            initial="hidden"
+                            animate="visible"
+                            variants={{
+                                hidden: {
+                                    opacity: 0,
+                                    y: 100
+                                }, visible: {
+                                    opacity: 1,
+                                    y: 0
+                                }
+                            }} >
+                            <h3>{productStore.product.title}</h3>
+                        </motion.div>
                         <p>{productStore.product.description}</p>
                         <h4 className="mb-4">
                             <span>Price: </span>
@@ -54,7 +70,7 @@ const SingleProductPage = () => {
                         </h4>
                         <div className="col-6 p-0">
                             <InputGroup>
-                                <InputGroupText addonType="prepend">
+                                <InputGroupText>
                                     <small>Subtotal: ${(quantityToBeAddedToCart * productStore.product.price).toFixed(3)}</small>
                                 </InputGroupText>
                                 <Input value={quantityToBeAddedToCart} onChange={e => setQuantityToBeAddedToCart(e.target.value)} type="number" min="1" />
@@ -67,8 +83,9 @@ const SingleProductPage = () => {
                 </div>
             ) : (
                     <div className="alert alert-info">Please wait, loading product information!</div>
-                )}
-        </div>
+                )
+            }
+        </div >
     )
 }
 

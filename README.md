@@ -1,6 +1,6 @@
 # [Next](https://nextjs.org/) with [Stripe](https://stripe.com/)
-**VERSION: 1.0**
-[Next.js](https://nextjs.org/) app to let users pay using [Stripe](https://stripe.com/) and download my CV/Resume.
+**VERSION: 2.0**
+[Next.js](https://nextjs.org/) store, displays a list of products that the user can add to cart and checkout using [Stripe](https://stripe.com/).
 ```bash
 npm install
 npm run start

@@ -15,7 +15,7 @@ const productsReducer = (state = initialState, action) => {
 
         case LOAD_PRODUCTS_SUCCESSFUL:
             const categories = action.payload.reduce((p, c, i, arr) => {
-                console.log(p, c, i, arr)
+                // console.log(p, c, i, arr)
                 if (p.indexOf(c.category) == -1)
                     return [...p, c.category]
                 return p
