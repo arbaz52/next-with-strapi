@@ -11,7 +11,14 @@ const rootReducer = combineReducers({
     product: productReducer,
     cart: cartReducer
 })
-const composeEnhancers = typeof window !== 'undefined' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
+
+let composeEnhancers;
+
+try{
+    composeEnhancers = typeof window !== 'undefined' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
+}catch(err){
+    composeEnhancers = compose
+}
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger, thunk)))
 
