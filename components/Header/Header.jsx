@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Nav, NavItem, NavLink } from 'reactstrap'
 import { goto } from '../navigation';
 import { HiOutlineShoppingCart } from 'react-icons/hi'
+import { calculateTotal } from '../Cart/Cart';
 
 const Header = () => {
     // cart
@@ -27,9 +28,7 @@ const Header = () => {
                             {cartStore.length > 0 && (
                                 <>
                                     <small>
-                                        ${cartStore.reduce((p, c, i, arr) => {
-                                        return c.product.price * c.quantity + p
-                                    }, 0).toFixed(3)}
+                                        ${calculateTotal(cartStore)}
                                     </small>
                                     <small class="bg-primary text-light" style={{ position: "absolute", top: 0, right: 0, width: 20, height: 20, borderRadius: "50%", textAlign: "center", fontSize: "0.7em", alignItems: "center", display: "flex", justifyContent: "center" }}>{cartStore.length}</small>
                                 </>

@@ -22,7 +22,7 @@ const loadProductFailed = (error) => {
 const _getProduct = (id) => {
     return (dispatch) => {
         dispatch(loadProduct())
-        axios.get(`https://fakestoreapi.com/products/${id}`)
+        axios.get(`/api/products/${id}`)
         .then(res => {
             // console.log(res)
             dispatch(loadProductSuccessful(res.data))
