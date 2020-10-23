@@ -11,18 +11,26 @@ import withRedux from 'next-redux-wrapper'
 import App from 'next/app'
 import { Provider } from 'react-redux';
 import store from '../redux/store';
+import { loadFromLocalStorage } from '../redux/cart/actions';
 
 
 class MyApp extends App {
-  static async getInitialProps({Component, ctx}) {
+  static async getInitialProps({ Component, ctx }) {
     const appProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {}
     return { appProps }
   }
-  render () {
+  componentDidMount() {
+    setTimeout(() => {
+      store.dispatch(loadFromLocalStorage())
+
+    }, 1)
+  }
+  render() {
+
     const { Component, appProps } = this.props
     return (
       <Provider store={store}>
-        
+
         <ToastContainer />
         <Header />
         <Component {...appProps} />

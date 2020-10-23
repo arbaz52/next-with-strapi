@@ -1,4 +1,4 @@
-const { ADD_TO_CART, UPDATE_QUANTITY, REMOVE_FROM_CART } = require("./types")
+const { ADD_TO_CART, UPDATE_QUANTITY, REMOVE_FROM_CART, LOAD_FROM_LOCAL_STORAGE } = require("./types")
 
 const addToCart = (product, quantity) => {
     return {
@@ -25,8 +25,15 @@ const removeFromCart = (id) => {
     }
 }
 
+const loadFromLocalStorage = (id) => {
+    return {
+        type: LOAD_FROM_LOCAL_STORAGE
+    }
+}
+
 export {
     addToCart,
     updateQuantity,
-    removeFromCart
+    removeFromCart,
+    loadFromLocalStorage
 }
