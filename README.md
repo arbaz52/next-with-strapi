@@ -1,7 +1,7 @@
 # [Next](https://nextjs.org/) with [Stripe](https://stripe.com/)
 **VERSION: 2.0**
 
-[VISIT LIVE DEMO!](https://rstorer.herokuapp.com/cart)
+[VISIT LIVE DEMO!](https://rstorer.herokuapp.com/)
 
 [Next.js](https://nextjs.org/) store, displays a list of products that the user can add to cart and checkout using [Stripe](https://stripe.com/).
 ```bash
