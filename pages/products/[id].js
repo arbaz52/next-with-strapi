@@ -5,6 +5,7 @@ import { Badge, Breadcrumb, BreadcrumbItem, Button, Input, InputGroup, InputGrou
 import { _getProduct } from '../../redux/product/actions'
 
 import { motion } from 'framer-motion'
+import StripeCheckout from 'react-stripe-checkout'
 
 const SingleProductPage = () => {
     const router = useRouter()
@@ -79,6 +80,19 @@ const SingleProductPage = () => {
                                 </InputGroupAddon>
                             </InputGroup>
                         </div>
+                        
+                        {/* QUICK BUY */}
+                        <div className="mt-4"></div>
+                        <StripeCheckout
+                        // callback
+                        //TODO: ADD STRIPE KEY
+                        token=""
+                        stripeKey=""
+                        billingAddress
+                        shippingAddress
+                        >
+                            <Button color="primary">Quick Buy!</Button>
+                        </StripeCheckout>
                     </div>
                 </div>
             ) : (

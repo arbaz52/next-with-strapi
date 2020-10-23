@@ -11,6 +11,7 @@ const ProductCard = (props) => {
 
     const selfRef = useRef(null)
     useEffect(() => {
+        /*
         if(selfRef.current){
             gsap.from(selfRef.current, 1, {
                 opacity: 0,
@@ -18,6 +19,7 @@ const ProductCard = (props) => {
                 scrollTrigger: selfRef.current,
             })
         }
+        */
     }, [selfRef.current])
 
     return (
