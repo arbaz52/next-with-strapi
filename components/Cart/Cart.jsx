@@ -1,7 +1,9 @@
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout'
 import { Button, Input, InputGroup, InputGroupText } from 'reactstrap'
-import { removeFromCart, updateQuantity } from '../../redux/cart/actions'
+import { emptyCart, removeFromCart, updateQuantity } from '../../redux/cart/actions'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const calculateTotal = (cartStore) => {
     return cartStore.reduce((p, c, i, arr) => {
@@ -53,7 +55,20 @@ const CartItems = ({ cartStore, dispatch }) => {
     )
 }
 
-const CartSummary = ({ cartStore }) => {
+const CartSummary = ({ cartStore, dispatch }) => {
+    const handleCheckout = (token) => {
+        axios.post("/api/orders/checkout", {token, cart: cartStore})
+        .then(res => {
+            toast.success("Payment successful! Your order is on the way!")
+            dispatch(emptyCart())
+            console.log(res)
+        })
+        .catch(err => {
+            toast.error("Error occured while processing the payment! Order was not placed")
+            console.log(err)
+        })
+        console.log(token)
+    }
     return (
         cartStore.length > 0 ?
             <table className="table table-borderless">
@@ -65,7 +80,12 @@ const CartSummary = ({ cartStore }) => {
                     <tr>
                         <td>Let's purchase</td>
                         <td className="text-right">
-                            <StripeCheckout />
+                            <StripeCheckout 
+                                token={handleCheckout}
+                                stripeKey="pk_test_51HeypfL9vowMRDDJ8F7zCzT7sDI9iYIK7LmcAGuLU4Rdrl0viLjf4RHmb2i8F9tvuH2enMuwzOxLjZQm1FfP5Sxl00CUpLOajx"
+                            >
+                                <Button size="sm" color="primary">Pay with credit card</Button>
+                                </StripeCheckout>
                         </td>
                     </tr>
                 </tbody>

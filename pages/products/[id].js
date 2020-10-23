@@ -14,8 +14,8 @@ const SingleProductPage = () => {
     const { id } = router.query
     const productStore = useSelector(store => store.product)
     const dispatch = useDispatch()
-    
-    
+
+
     const [product, setProduct] = useState(null)
 
     useEffect(() => {
@@ -24,7 +24,7 @@ const SingleProductPage = () => {
             productStore.product.id != id) {
             console.log("fetching product")
             dispatch(_getProduct(id))
-        }else{
+        } else {
             setProduct(productStore.product)
         }
     }, [productStore.product])
@@ -90,12 +90,13 @@ const SingleProductPage = () => {
                                 <Input value={quantityToBeAddedToCart} onChange={e => setQuantityToBeAddedToCart(e.target.value)} type="number" min="1" />
                                 <InputGroupAddon addonType="append">
                                     <Button color="primary"
-                                    onClick={_addToCart}>Add to cart</Button>
+                                        onClick={_addToCart}>Add to cart</Button>
                                 </InputGroupAddon>
                             </InputGroup>
                         </div>
 
                         {/* QUICK BUY */}
+                        {/* 
                         <div className="mt-4"></div>
                         <StripeCheckout
                             // callback
@@ -105,6 +106,7 @@ const SingleProductPage = () => {
                         >
                             <Button color="primary">Quick Buy!</Button>
                         </StripeCheckout>
+                         */}
                     </div>
                 </div>
             ) : (

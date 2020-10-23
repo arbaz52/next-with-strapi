@@ -121,14 +121,14 @@ export default function Home() {
               <br />
               <h6>Sort products by: {sorting.method + ' ' + (sorting.asc ? 'asc' : 'desc')}</h6>
               <InputGroup>
-                <Input type="select" onChange={e => setSorting({ ...sorting, method: e.target.value })}>
+                <Input type="select" defaultValue={sorting.method} onChange={e => setSorting({ ...sorting, method: e.target.value })}>
                   {
                     sorting.methods.map(_method => {
-                      return <option className="text-capitalize" key={_method} selected={_method == sorting.method}>{_method}</option>
+                      return <option className="text-capitalize" key={_method}>{_method}</option>
                     })
                   }
                 </Input>
-                <InputGroupAddon>
+                <InputGroupAddon addonType="append">
 
                   <Input type="select" onChange={e => setSorting({ ...sorting, asc: (e.target.value == "true") })}>
                     <option value="true">Ascending</option>

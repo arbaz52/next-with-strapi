@@ -25,7 +25,7 @@ const CartPage = () => {
                 </div>
                 <div className="col border-left">
                     <h4 className="mb-3"><b>Your Order Summary</b></h4>
-                    <CartSummary cartStore={cartStore} />
+                    <CartSummary cartStore={cartStore} dispatch={dispatch} />
                 </div>
             </div>
         </div>

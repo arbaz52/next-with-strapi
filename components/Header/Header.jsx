@@ -30,7 +30,7 @@ const Header = () => {
                                     <small>
                                         ${calculateTotal(cartStore)}
                                     </small>
-                                    <small class="bg-primary text-light" style={{ position: "absolute", top: 0, right: 0, width: 20, height: 20, borderRadius: "50%", textAlign: "center", fontSize: "0.7em", alignItems: "center", display: "flex", justifyContent: "center" }}>{cartStore.length}</small>
+                                    <small className="bg-primary text-light" style={{ position: "absolute", top: 0, right: 0, width: 20, height: 20, borderRadius: "50%", textAlign: "center", fontSize: "0.7em", alignItems: "center", display: "flex", justifyContent: "center" }}>{cartStore.length}</small>
                                 </>
                             )}
                         </NavLink>

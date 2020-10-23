@@ -1,6 +1,6 @@
 import { updateQuantity } from "./actions"
 
-const { ADD_TO_CART, REMOVE_FROM_CART, UPDATE_QUANTITY, LOAD_FROM_LOCAL_STORAGE } = require("./types")
+const { ADD_TO_CART, REMOVE_FROM_CART, UPDATE_QUANTITY, LOAD_FROM_LOCAL_STORAGE, EMPTY_CART } = require("./types")
 
 const initialState = []
 
@@ -43,6 +43,12 @@ const _cartReducer = (state, action) => {
                 if (_cart)
                     return _cart
                 return [...state, ]
+            }
+
+
+        case EMPTY_CART:
+            {
+                return []
             }
 
         default:
