@@ -1,3 +1,4 @@
+import cartReducer from "./cart/reducers";
 import productReducer from "./product/reducers";
 import productsReducer from "./products/reducers";
 
@@ -7,7 +8,8 @@ const { default: thunk } = require("redux-thunk");
 
 const rootReducer = combineReducers({
     products: productsReducer,
-    product: productReducer
+    product: productReducer,
+    cart: cartReducer
 })
 const composeEnhancers = typeof window !== 'undefined' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
 

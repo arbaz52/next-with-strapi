@@ -6,34 +6,47 @@ import { _getProduct } from '../../redux/product/actions'
 
 import { motion } from 'framer-motion'
 import StripeCheckout from 'react-stripe-checkout'
+import { Formik } from 'formik'
+import { addToCart } from '../../redux/cart/actions'
 
 const SingleProductPage = () => {
     const router = useRouter()
     const { id } = router.query
     const productStore = useSelector(store => store.product)
     const dispatch = useDispatch()
+    
+    
+    const [product, setProduct] = useState(null)
+
     useEffect(() => {
         if (
             !productStore.product ||
             productStore.product.id != id) {
             console.log("fetching product")
             dispatch(_getProduct(id))
+        }else{
+            setProduct(productStore.product)
         }
-    }, [])
+    }, [productStore.product])
 
 
 
     const [quantityToBeAddedToCart, setQuantityToBeAddedToCart] = useState(1)
 
 
+    const _addToCart = (e) => {
+        e.preventDefault()
+        dispatch(addToCart(productStore.product, quantityToBeAddedToCart))
+    }
+
 
     return (
         <div className="container py-5">
-            {productStore.product ? (
+            {product ? (
 
                 <div className="row">
                     <div className="col-sm-12 col-md-4 text-center my-auto">
-                        <img src={productStore.product.image} style={{ maxHeight: "80vh", maxWidth: "100%", objectFit: "contain", objectPosition: "center" }} alt="" className="img-fluid" />
+                        <img src={product.image} style={{ maxHeight: "80vh", maxWidth: "100%", objectFit: "contain", objectPosition: "center" }} alt="" className="img-fluid" />
                     </div>
                     <div className="col-sm-12 col-md-8">
 
@@ -42,14 +55,14 @@ const SingleProductPage = () => {
                                 <small>Products</small>
                             </BreadcrumbItem>
                             <BreadcrumbItem>
-                                <small>{productStore.product.category}</small>
+                                <small>{product.category}</small>
                             </BreadcrumbItem>
                             <BreadcrumbItem>
-                                <small>{productStore.product.title}</small>
+                                <small>{product.title}</small>
                             </BreadcrumbItem>
                         </Breadcrumb>
 
-                        <b className="text-primary text-capitalize">{productStore.product.category}</b>
+                        <b className="text-primary text-capitalize">{product.category}</b>
                         <motion.div
                             initial="hidden"
                             animate="visible"
@@ -62,34 +75,33 @@ const SingleProductPage = () => {
                                     y: 0
                                 }
                             }} >
-                            <h3>{productStore.product.title}</h3>
+                            <h3>{product.title}</h3>
                         </motion.div>
-                        <p>{productStore.product.description}</p>
+                        <p>{product.description}</p>
                         <h4 className="mb-4">
                             <span>Price: </span>
-                            <b className="text-primary">${productStore.product.price}</b>
+                            <b className="text-primary">${product.price}</b>
                         </h4>
                         <div className="col-6 p-0">
                             <InputGroup>
                                 <InputGroupText>
-                                    <small>Subtotal: ${(quantityToBeAddedToCart * productStore.product.price).toFixed(3)}</small>
+                                    <small>Subtotal: ${(quantityToBeAddedToCart * product.price).toFixed(3)}</small>
                                 </InputGroupText>
                                 <Input value={quantityToBeAddedToCart} onChange={e => setQuantityToBeAddedToCart(e.target.value)} type="number" min="1" />
                                 <InputGroupAddon addonType="append">
-                                    <Button color="primary">Add to cart</Button>
+                                    <Button color="primary"
+                                    onClick={_addToCart}>Add to cart</Button>
                                 </InputGroupAddon>
                             </InputGroup>
                         </div>
-                        
+
                         {/* QUICK BUY */}
                         <div className="mt-4"></div>
                         <StripeCheckout
-                        // callback
-                        //TODO: ADD STRIPE KEY
-                        token=""
-                        stripeKey=""
-                        billingAddress
-                        shippingAddress
+                            // callback
+                            //TODO: ADD STRIPE KEY
+                            token=""
+                            stripeKey=""
                         >
                             <Button color="primary">Quick Buy!</Button>
                         </StripeCheckout>
